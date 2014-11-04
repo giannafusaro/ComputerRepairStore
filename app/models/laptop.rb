@@ -1,0 +1,2 @@
+class Laptop < Computer
+end
