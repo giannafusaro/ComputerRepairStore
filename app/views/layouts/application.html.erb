@@ -1,14 +1,52 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>ComputerRepairStore</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>ComputerRepairStore</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
 
-<%= yield %>
+    <% if flash[:notice].present? %>
+      <div id="flash-message" class="well">
+        <%= flash[:notice] %>
+        <span class="js-close" data-close="flash-message">X</span>
+      </div>
+    <% end %>
 
-</body>
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">FixNow.me</a>
+        </div>
+        <% if current_user %>
+          <h4 class="pull-right username"> Hi, <%= current_user.name %> </h4>
+        <% else %>
+          <%= form_for :customer, url: login_path, html: { class: 'navbar-form navbar-right' } do |f|%>
+
+            <div class="form-group">
+              <%= f.label :email %>
+              <%= f.text_field :email, class: 'form-control' %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :password %>
+              <%= f.password_field :password, class: 'form-control' %>
+            </div>
+
+            <%= f.submit 'Login', class: 'btn btn-primary' %>
+          <% end %>
+        <% end %>
+
+      </div>
+    </nav>
+    <div id = "content-container">
+
+      <%= yield %>
+    </div>
+  </body>
 </html>

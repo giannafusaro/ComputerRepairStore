@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141104033444) do
+ActiveRecord::Schema.define(version: 20141109194933) do
 
   create_table "computers", force: true do |t|
     t.integer  "customer_id"
@@ -30,13 +30,15 @@ ActiveRecord::Schema.define(version: 20141104033444) do
     t.string   "phone"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "password_digest"
   end
 
   create_table "employees", force: true do |t|
     t.string   "name"
-    t.decimal  "rating",     precision: 10, scale: 0
+    t.decimal  "rating",          precision: 10, scale: 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "password_digest"
   end
 
   create_table "parts", force: true do |t|
@@ -54,11 +56,12 @@ ActiveRecord::Schema.define(version: 20141104033444) do
     t.integer  "employee_id"
     t.integer  "computer_id"
     t.text     "description"
-    t.decimal  "labor_cost",  precision: 8, scale: 2
-    t.decimal  "total_cost",  precision: 8, scale: 2
+    t.decimal  "labor_cost",    precision: 8, scale: 2
+    t.decimal  "total_cost",    precision: 8, scale: 2
     t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "requested_for"
   end
 
 end

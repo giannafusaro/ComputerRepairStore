@@ -1,1 +1,46 @@
-<h1>Home Page</h1>
+<div class="row outer-container">
+  <div class="col-md-8 left-container">
+    <h1 class="motto">We Fix Computers</h1>
+  </div>
+  <div class="col-md-4 right-container">
+    <h1>Sign up</h1>
+    <h2>and schedule a tech today!</h2>
+    <hr>
+    <% unless @customer.nil? || @customer.errors.empty? %>
+      <div class="panel panel-danger">
+        <div class="panel-heading">
+          <h3>Woah! Not so fast...</h3>
+          <ul>
+            <% @customer.errors.each do |name, msg| %>
+              <li><%= name %> <%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    <% end %>
+
+    <%= form_for :customer, url: signup_path, method: :post do |f|%>
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :phone %> <small class="text-muted">*optional</small>
+        <%= f.text_field :phone, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :email %>
+        <%= f.text_field :email, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :password %>
+        <%= f.password_field :password, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, class: 'form-control' %>
+      </div>
+      <%= f.submit 'Signup', class: 'btn btn-info' %>
+    <% end %>
+  </div>
+</div>
