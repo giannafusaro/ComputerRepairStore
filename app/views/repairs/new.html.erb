@@ -1,0 +1,38 @@
+<div class="container">
+  <h1>New Repair</h1>
+
+
+  <%= form_for @repair do |f| %>
+    <div class="form-group">
+      <%= f.label :customer_id %>
+      <%= f.text_field :customer_id, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :employee_id %>
+      <%= f.text_field :employee_id, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :computer_id %>
+      <%= f.text_field :computer_id, class: 'form-control' %>
+
+      <%= f.label :description %>
+      <%= f.text_field :description, class: 'form-control' %>
+
+      <%= f.label :labor_cost %>
+      <%= f.text_field :labor_cost, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :total_cost %>
+      <%= f.text_field :total_cost, class: 'form-control' %>
+
+      <%= f.label :status %>
+      <%= f.text_field :status, class: 'form-control' %>
+
+    </div>
+
+    <%= f.submit 'Create Repair', class: 'btn btn-primary' %>
+  <% end %>
+</div>

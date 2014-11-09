@@ -1,0 +1,45 @@
+<%= (render partial: '/layouts/errors', formats: [:html], locals: { klass: @repair }) if @repair %>
+
+<h1> Edit Repair </h1>
+
+
+<%= form_for @repair do |f| %>
+
+  <div class="form-group">
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :street_address %>
+    <%= f.text_field :street_address, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :city %>
+    <%= f.text_field :city, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :zip_code %>
+    <%= f.text_field :zip_code, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :phone %>
+    <%= f.text_field :phone, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :notes %>
+    <%= f.text_field :notes, class: 'form-control' %>
+  </div>
+
+  <%= f.submit 'Edit Customer', class: 'btn btn-default' %>
+
+<% end %>
