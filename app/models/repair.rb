@@ -7,8 +7,12 @@ class Repair < ActiveRecord::Base
   scope :upcoming_repairs, lambda { where('requested_for >= ?', Time.now) }
   scope :past_repairs, lambda { where('requested_for < ?', Time.now) }
 
+  attr_accessor :offset
+
   def requested_for=(str)
-    self[:requested_for] = DateTime.strptime(str, '%m/%d/%Y %I:%M %p') if str.present?
+    if str.present?
+      self[:requested_for] = DateTime.strptime(str, '%m/%d/%Y %I:%M %p') + -(offset.to_i.hours)
+    end
   end
 
   def status
