@@ -1,0 +1,81 @@
+<%= (render partial: '/layouts/errors', formats: [:html], locals: { klass: @repair }) if @repair %>
+<div class="container content-container">
+  <%= form_for [:employee, @repair] do |f| %>
+    <div class="row">
+
+      <div class="col-md-6">
+        <h2>Repair Details</h2>
+        <div class="form-group">
+          <%= f.label :customer_name %>
+          <br/>
+          <span class="unmutable-attribute"><%= @repair.customer.name.capitalize %></span>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :employee_name %>
+          <br/>
+          <span class="unmutable-attribute"><%= @repair.employee.name.capitalize %></span>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :requested_for %>
+          <br/>
+          <span class="unmutable-attribute js-timestamp"><%= @repair.requested_for %></span>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :description %>
+          <%= f.text_field :description, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :labor_cost %>
+          <%= f.number_field :labor_cost, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :total_cost %>
+          <%= f.number_field :total_cost, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <h2>Computer Specs</h2>
+          <% computer = @repair.computer || Computer.new %>
+          <%= f.fields_for :computer, computer do |c| %>
+            <div class="form-group">
+              <%= c.label :type %>
+              <%= c.select :type, %w(Desktop Laptop), {}, class: 'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= c.label :model %>
+              <%= c.text_field :model, class: 'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= c.label :serial %>
+              <%= c.text_field :serial, class: 'form-control' %>
+            </div>
+            <div class="checkbox">
+              <%= c.label :warranty do %>
+                <%= c.check_box :warranty %> <strong>has warranty</strong>
+              <% end %>
+            </div>
+            <div class="form-group">
+              <%= c.label :purchased_at %>
+              <div id="datetimepicker" class="input-group input-append date">
+                <%= c.text_field :purchased_at, class: 'form-control js-timestamp' %>
+                <span class="input-group-addon add-on">
+                  <i class="glyphicon glyphicon-calendar"></i>
+                </span>
+              </div>
+            </div>
+            <%= c.hidden_field :offset, class: 'js-offset' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <%= f.submit 'Save Changes', class: 'btn btn-info' %>
+  <% end %>
+</div>

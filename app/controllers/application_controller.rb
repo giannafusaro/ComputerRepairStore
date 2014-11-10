@@ -4,9 +4,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def current_user
-    Rails.logger.debug "==================================="
-    Rails.logger.debug session[:user].inspect
-    Rails.logger.debug "==================================="
     if session[:user].present?
       model = session[:user]['type'].classify.constantize
       @current_user ||= (model.find(session[:user]['id']))

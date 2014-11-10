@@ -4,8 +4,11 @@ class Repair < ActiveRecord::Base
   belongs_to :computer
   has_many :parts
 
-  scope :upcoming_repairs, lambda { where('requested_for >= ?', Time.now) }
-  scope :past_repairs, lambda { where('requested_for < ?', Time.now) }
+  scope :upcoming, -> { where('requested_for >= ?', Time.now) }
+  scope :past, -> { where('requested_for < ?', Time.now) }
+  scope :unassigned, -> { where('employee_id IS NULL') }
+
+  accepts_nested_attributes_for :computer, allow_destroy: true
 
   attr_accessor :offset
 

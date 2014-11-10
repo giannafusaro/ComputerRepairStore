@@ -1,0 +1,33 @@
+<div class="container content-container">
+  <h1>Repair Details</h1>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Customer Name</th>
+        <th>Employee Name</th>
+        <th>Computer Model</th>
+        <th>Description</th>
+        <th>Requested For</th>
+        <th>Labor Cost</th>
+        <th>Total Cost</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+      <tr>
+        <td><%= @repair.customer.name if @repair.customer %></td>
+        <td><%= @repair.employee.name if @repair.employee %></td>
+        <td><%= @repair.computer.model if @repair.computer %></td>
+        <td><%= @repair.description %></td>
+        <td><%= @repair.requested_for %></td>
+        <td><%= @repair.labor_cost %></td>
+        <td><%= @repair.total_cost %></td>
+        <td><%= @repair.status %></td>
+        <td class="repair-action">
+            <%= link_to edit_employee_repair_path(@repair.id), class: "btn btn-default" do %>
+              <span class="glyphicon glyphicon-trash"></span> Edit
+            <% end %>
+        </td>
+      </tr>
+  </table>
+</div>

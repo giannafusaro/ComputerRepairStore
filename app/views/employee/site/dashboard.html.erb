@@ -1,0 +1,64 @@
+<div class="container content-container">
+  <h1>Dashboard</h1>
+  <div class="row">
+    <div class="col-md-6">
+      <table class="table table-striped">
+        <tr>
+          <td class="repair-header" colspan="5"> <h3>Unassigned Repairs</h3> </td>
+        </tr>
+        <tr>
+          <th>Customer Name</th>
+          <th>Description</th>
+          <th>Requested For</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+        <% Repair.all.unassigned.each do |repair| %>
+          <tr>
+            <td><%= repair.customer.name %></td>
+            <td><%= repair.description %></td>
+            <td class="js-timestamp"><%= repair.requested_for %></td>
+            <td><%= repair.status %></td>
+            <td class="repair-action">
+              <%= link_to employee_take_ownership_path(repair.id), class: "btn btn-default" do %>
+                <span class="glyphicon glyphicon-eye-open"></span> Take Ownership
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+        <tr>
+      </table>
+    </div>
+    <div class="col-md-6">
+      <table class="table table-striped">
+        <tr>
+          <td class="repair-header" colspan="5"> <h3>My Repairs</h3> </td>
+        </tr>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Requested For</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+
+        <% current_user.repairs.each do |repair| %>
+          <tr>
+            <td><%= repair.customer.name %></td>
+            <td><%= repair.description %></td>
+            <td class="js-timestamp"><%= repair.requested_for %></td>
+            <td><%= repair.status %></td>
+            <td class="repair-action">
+              <%= link_to employee_repair_path(repair.id), class: "btn btn-default" do %>
+                <span class="glyphicon glyphicon-eye-open"></span> View
+              <% end %>
+              <%= link_to edit_employee_repair_path(repair.id), class: "btn btn-default" do %>
+                <span class="glyphicon glyphicon-trash"></span> Edit
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

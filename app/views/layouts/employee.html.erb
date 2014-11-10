@@ -21,8 +21,10 @@
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
+
           <%= link_to "FixStop.me", employee_dashboard_path, class: "navbar-brand" %>
           <h4 class="pull-right username">Employee</h4>
+
         </div>
         <% if current_user.is_a?(Employee) %>
           <%= link_to "Logout", employee_logout_path, class: "navbar-brand logout" %>

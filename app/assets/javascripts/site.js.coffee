@@ -9,7 +9,7 @@ $(document).on 'click', '.js-close', (event) ->
 
 $(document).on 'page:update', (event) ->
 
-  $("#repair_offset").val(parseInt(moment().format('Z')))
+  $('.js-offset').val(parseInt(moment().format('Z')))
 
   # Automatically dismiss flash messages after 5 seconds
   setTimeout ->
@@ -23,11 +23,7 @@ $(document).on 'page:update', (event) ->
 
   # Set any timestamps to the user's local time
   $('.js-timestamp').each ->
-    console.log "yup: ", $(this).data('timestamp')
-    if $(this).data('timestamp') is "long"
-      formatStr = 'dddd, MMM Do h:mmA'
-    else
-      formatStr = 'MM/DD/YYYY h:mmA'
+    formatStr = 'MM/DD/YYYY h:mm A'
 
     if $(this).is('input')
       timestamp = $(this).val()
