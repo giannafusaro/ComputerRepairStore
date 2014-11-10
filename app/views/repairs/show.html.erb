@@ -1,18 +1,25 @@
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Requested For</th>
-    </tr>
-  </thead>
-    <tr>
-      <td><%= @repair.customer.name %></td>
-      <td><%= @repair.description %></td>
-      <td><%= @repair.requested_for %></td>
-      <td>
-          <%= link_to raw("<span class=\"glyphicon glyphicon-trash\"></span> Delete"), repair_path(@repair.id),
-          method: :delete, 'data-confirm'=>'Are you sure?', class: "btn btn-default" %>
-      </td>
-    </tr>
-</table>
+<div class="container content-container">
+  <h1>Repair Details</h1>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Requested For</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+      <tr>
+        <td><%= @repair.customer.name %></td>
+        <td><%= @repair.description %></td>
+        <td><%= @repair.requested_for %></td>
+        <td><%= @repair.status %></td>
+        <td class="repair-action">
+            <%= link_to repair_path(@repair.id), method: :delete, 'data-confirm'=>'Are you sure?', class: "btn btn-default" do %>
+              <span class="glyphicon glyphicon-trash"></span> Delete
+            <% end %>
+        </td>
+      </tr>
+  </table>
+</div>

@@ -94,8 +94,12 @@ nav.navbar {
   }
 }
 
-#content-container {
+.content-container {
   padding-top: 50px;
+}
+
+.repair-action {
+  min-width: 180px;
 }
 
 .username {
@@ -114,5 +118,13 @@ nav.navbar {
     background-color: #bbb;
     right: 0px;
     top: 13px;
+  }
+}
+
+.repair-header {
+  background-color:#E8FBFF;
+  color: #31708f;
+  h3 {
+    margin-top: 10px;
   }
 }
