@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     get '/login' => 'site#home'
     post '/login' => 'employees#login'
 
-    get '/logout' => 'customers#logout'
+    get '/logout' => 'employees#logout'
 
     get '/take_ownership/:id' => 'employees#take_ownership', as: :take_ownership
 

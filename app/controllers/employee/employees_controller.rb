@@ -24,6 +24,9 @@ class Employee::EmployeesController < ApplicationController
   end
 
   def logout
+    session[:user] = nil
+    flash[:notice] = "You have been logged out!"
+    redirect_to employee_site_path
   end
 
   def take_ownership
