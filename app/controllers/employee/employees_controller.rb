@@ -26,4 +26,17 @@ class Employee::EmployeesController < ApplicationController
   def logout
   end
 
+  def take_ownership
+    @repair = Repair.find(params[:id])
+    if @repair && current_user.is_a?(Employee)
+      @repair.employee = current_user
+      if @repair.save
+        flash[:notice] = "Repair assigned!"
+      end
+    else
+      flash[:notice] = "Whoops, something went wrong. Try again."
+    end
+    redirect_to employee_dashboard_path
+  end
+
 end
