@@ -18,3 +18,22 @@ $(document).on 'page:update', (event) ->
   $('#datetimepicker').datetimepicker
     language: 'en',
     pick12HourFormat: true
+
+  # Set any timestamps to the user's local time
+  $('.js-timestamp').each ->
+    console.log "yup: ", $(this).data('timestamp')
+    if $(this).data('timestamp') is "long"
+      formatStr = 'dddd, MMM Do h:mmA'
+    else
+      formatStr = 'MM/DD/YYYY h:mmA'
+
+    if $(this).is('input')
+      timestamp = $(this).val()
+      if timestamp
+        m = moment(timestamp)
+        $(this).val(m.format(formatStr))
+    else
+      timestamp = $(this).text()
+      if timestamp.match(/\d/i)
+        m = moment(timestamp)
+        $(this).text(m.format(formatStr))
