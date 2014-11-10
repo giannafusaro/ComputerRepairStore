@@ -4,6 +4,9 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def current_user
+    Rails.logger.debug "==================================="
+    Rails.logger.debug session[:user].inspect
+    Rails.logger.debug "==================================="
     if session[:user].present?
       model = session[:user]['type'].classify.constantize
       @current_user ||= (model.find(session[:user]['id']))
@@ -11,21 +14,19 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
-  def require_user
-    unless current_user
+  def require_customer
+    unless current_user.present? && current_user.is_a?(Customer)
       flash[:notice] = "You have to log in, dude."
-      session[:employee_requested_url] = request.url unless request.xhr?
-      session[:employee_id] = nil
+      session[:user] = nil
       redirect_to site_path and return false
     end
   end
 
-  def require_customer
-    unless current_customer
-      flash[:notice] = "You have to log in, dude."
-      session[:customer_requested_url] = request.url unless request.xhr?
-      session[:customer_id] = nil
-      redirect_to site_path and return false
+  def require_employee
+    unless current_user && current_user.is_a?(Employee)
+      flash[:notice] = "You have to log in as an employee, dude."
+      session[:user] = nil
+      redirect_to employee_site_path and return false
     end
   end
 

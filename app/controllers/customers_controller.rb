@@ -1,4 +1,5 @@
 class CustomersController < ApplicationController
+  before_filter :require_customer, :except => [:login, :signup]
 
   def login
     if current_user
@@ -8,7 +9,6 @@ class CustomersController < ApplicationController
         if @customer = Customer.find_by_email(params[:customer][:email])
           if @customer.authenticate(params[:customer][:password])
             session[:user] = {id: @customer.id, type: "customer"}
-            session[:customer_id] = @customer.id
             redirect_to dashboard_path
           else
             flash.now[:notice] = "Your password is incorrect."
@@ -20,6 +20,9 @@ class CustomersController < ApplicationController
         end
       end
     end
+  end
+
+  def index
   end
 
   def signup
@@ -37,8 +40,8 @@ class CustomersController < ApplicationController
   end
 
   def logout
-    session[:customer_id] = nil
-    flash[:success] = "You are now logged out"
+    session[:user] = nil
+    flash[:notice] = "You are now logged out"
     redirect_to site_path
   end
 

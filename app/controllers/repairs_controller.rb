@@ -1,5 +1,5 @@
 class RepairsController < ApplicationController
-
+  before_filter :require_customer
 
   def index
     @repairs = Repair.all

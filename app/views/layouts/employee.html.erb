@@ -21,26 +21,12 @@
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-          <%= link_to "Fixnow.me", dashboard_path, class: "navbar-brand" %>
+          <%= link_to "Fixnow.me", employee_dashboard_path, class: "navbar-brand" %>
+          <h4 class="pull-right username">Employee</h4>
         </div>
-        <% if current_user.is_a?(Customer) %>
-          <%= link_to "Logout", logout_path, class: "navbar-brand logout" %>
+        <% if current_user.is_a?(Employee) %>
+          <%= link_to "Logout", employee_logout_path, class: "navbar-brand logout" %>
           <h4 class="pull-right username"> Hi, <%= current_user.name %> </h4>
-        <% else %>
-          <%= form_for :customer, url: login_path, html: { class: 'navbar-form navbar-right' } do |f|%>
-
-            <div class="form-group">
-              <%= f.label :email %>
-              <%= f.text_field :email, class: 'form-control' %>
-            </div>
-
-            <div class="form-group">
-              <%= f.label :password %>
-              <%= f.password_field :password, class: 'form-control' %>
-            </div>
-
-            <%= f.submit 'Login', class: 'btn btn-primary' %>
-          <% end %>
         <% end %>
 
       </div>
