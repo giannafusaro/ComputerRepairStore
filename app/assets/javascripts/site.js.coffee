@@ -9,6 +9,8 @@ $(document).on 'click', '.js-close', (event) ->
 
 $(document).on 'page:update', (event) ->
 
+  $("#repair_offset").val(parseInt(moment().format('Z')))
+
   # Automatically dismiss flash messages after 5 seconds
   setTimeout ->
     $('#flash-message .js-close').click()
