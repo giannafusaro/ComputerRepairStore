@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get  '/login'  => 'site#home'
   post '/login'  => 'customers#login'
 
+  get '/logout' => 'customers#logout'
+
   get  '/signup' => 'site#home'
   post '/signup' => 'customers#signup'
 
@@ -12,13 +14,12 @@ Rails.application.routes.draw do
 
   resources :repairs
   resources :customers
-  resources :employees
 
   namespace :employee do
-    post '/login' => 'employees#login', as: :login
+    get '/' => 'site#home', as: :site
+    get '/login' => 'site#home'
+    post '/login' => 'employees#login'
     get '/dashboard' => 'site#dashboard', as: :dashboard
-    resources :repairs
-    resources :customers
-    resources :employees
+
   end
 end
