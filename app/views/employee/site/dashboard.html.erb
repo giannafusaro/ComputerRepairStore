@@ -13,7 +13,7 @@
           <th>Status</th>
           <th>Action</th>
         </tr>
-        <% Repair.all.unassigned.each do |repair| %>
+        <% Repair.all.unassigned.order_by_date.each do |repair| %>
           <tr>
             <td><%= repair.customer.name %></td>
             <td><%= repair.description %></td>
@@ -42,7 +42,7 @@
           <th>Action</th>
         </tr>
 
-        <% current_user.repairs.each do |repair| %>
+        <% current_user.repairs.order_by_date.each do |repair| %>
           <tr>
             <td><%= repair.customer.name %></td>
             <td><%= repair.description %></td>

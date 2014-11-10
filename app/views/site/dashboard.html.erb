@@ -34,7 +34,7 @@
           <th>Action</th>
         </tr>
 
-        <% current_user.repairs.upcoming.each do |repair| %>
+        <% current_user.repairs.upcoming.order_by_date.each do |repair| %>
           <tr>
             <td><%= repair.customer.name %></td>
             <td><%= repair.description %></td>
@@ -53,7 +53,7 @@
         <tr>
           <td class="repair-header" colspan="5"> <h3>Past Repairs</h3> </td>
         </tr>
-          <% current_user.repairs.past.each do |repair| %>
+          <% current_user.repairs.past.order_by_date.each do |repair| %>
               <tr>
                 <td><%= repair.customer.name %></td>
                 <td><%= repair.description %></td>

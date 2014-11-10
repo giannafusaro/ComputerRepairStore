@@ -7,6 +7,7 @@ class Repair < ActiveRecord::Base
   scope :upcoming, -> { where('requested_for >= ?', Time.now) }
   scope :past, -> { where('requested_for < ?', Time.now) }
   scope :unassigned, -> { where('employee_id IS NULL') }
+  scope :order_by_date, -> { order('requested_for desc')}
 
   accepts_nested_attributes_for :computer, allow_destroy: true
 
