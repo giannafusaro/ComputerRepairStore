@@ -1,2 +1,0 @@
-class ComputersController < ApplicationController
-end

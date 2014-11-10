@@ -1,0 +1,19 @@
+<div class="row outer-container">
+  <div class="col-md-8 left-container">
+  </div>
+  <div class="col-md-4 right-container">
+    <h1>Employee Login</h1>
+    <hr>
+    <%= form_for :employee, url: employee_login_path, method: :post do |f|%>
+      <div class="form-group">
+        <%= f.label :email %>
+        <%= f.text_field :email, class: 'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :password %>
+        <%= f.password_field :password, class: 'form-control' %>
+      </div>
+      <%= f.submit 'Login', class: 'btn btn-info' %>
+    <% end %>
+  </div>
+</div>
