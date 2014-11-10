@@ -21,7 +21,7 @@
             <td><%= repair.status %></td>
             <td class="repair-action">
               <%= link_to employee_take_ownership_path(repair.id), class: "btn btn-default" do %>
-                <span class="glyphicon glyphicon-eye-open"></span> Take Ownership
+                <span class="glyphicon glyphicon-tower"></span> Take Ownership
               <% end %>
             </td>
           </tr>
@@ -53,7 +53,7 @@
                 <span class="glyphicon glyphicon-eye-open"></span> View
               <% end %>
               <%= link_to edit_employee_repair_path(repair.id), class: "btn btn-default" do %>
-                <span class="glyphicon glyphicon-trash"></span> Edit
+                <span class="glyphicon glyphicon-pencil"></span> Edit
               <% end %>
             </td>
           </tr>
