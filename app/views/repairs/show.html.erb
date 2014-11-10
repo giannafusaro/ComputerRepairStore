@@ -13,7 +13,7 @@
       <tr>
         <td><%= @repair.customer.name %></td>
         <td><%= @repair.description %></td>
-        <td><%= @repair.requested_for %></td>
+        <td class="js-timestamp"><%= @repair.requested_for %></td>
         <td><%= @repair.status %></td>
         <td class="repair-action">
             <%= link_to repair_path(@repair.id), method: :delete, 'data-confirm'=>'Are you sure?', class: "btn btn-default" do %>
