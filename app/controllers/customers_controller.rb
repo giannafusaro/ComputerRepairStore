@@ -2,23 +2,17 @@ class CustomersController < ApplicationController
   before_filter :require_customer, :except => [:login, :signup]
 
   def login
-    if current_user
-      redirect_to dashboard_path
-    else
-      if request.post?
-        if @customer = Customer.find_by_email(params[:customer][:email])
-          if @customer.authenticate(params[:customer][:password])
-            session[:user] = {id: @customer.id, type: "customer"}
-            redirect_to dashboard_path
-          else
-            flash.now[:notice] = "Your password is incorrect."
-            render 'site/home'
-          end
-        else
-          flash.now[:notice] = "There is no user with that login."
-          render 'site/home'
-        end
+    if @customer = Customer.find_by_email(params[:customer][:email])
+      if @customer.authenticate(params[:customer][:password])
+        session[:user] = { id: @customer.id, type: "customer" }
+        redirect_to dashboard_path
+      else
+        flash.now[:notice] = "Your password is incorrect."
+        render 'site/home'
       end
+    else
+      flash.now[:notice] = "There is no user with that login."
+      render 'site/home'
     end
   end
 
