@@ -11,45 +11,34 @@ html, body, .outer-container {
 .left-container {
   height: 100%;
   background-color: #E6E6E6;
-background-image: url(asset_path("fixstoplogo.png"));
+  background-image: url(asset_path("fixstoplogo.png"));
   background-size: auto 100%;
   background-repeat: no-repeat;
   &:before {
     content: '';
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0);
+    background: rgba(255, 0, 0,0.8);
     position: absolute;
     left: 0px;
   }
-  &:after {
-    content: '';
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-    z-index: 5;
-    left: 0;
-    height: 300px;
-    background: -moz-linear-gradient(top,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.2) 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.2))); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.2) 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.2) 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.2) 100%); /* IE10+ */
-    background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.2) 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
-  }
+}
+
+h1.motto {
+  font-size: 70px;
+}
+h3.motto {
+  margin-top: 0px;
+  font-size: 35px;
 }
 
 .motto {
-  color: #808080;
+  color: #fff;
   text-shadow: 2px 4px 8px rgba(0,0,0,0.3);
-  text-align: center;
   margin-top: 100px;
-  left: 0px;
-  right:0px;
-  position: absolute;
   font-weight: bold;
-  font-size: 70px;
+  position: relative;
+  z-index: 999;
 }
 
 .right-container {
@@ -62,7 +51,6 @@ background-image: url(asset_path("fixstoplogo.png"));
 nav.navbar {
   border-radius: 0px 0px 5px 0px;
   position: absolute;
-  color: #CC0000;
   top: 0px;
   z-index: 2;
 
