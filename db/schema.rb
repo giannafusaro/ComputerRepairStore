@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141110040903) do
+ActiveRecord::Schema.define(version: 20141121213604) do
 
   create_table "computers", force: true do |t|
     t.integer  "customer_id"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 20141110040903) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "requested_for"
+    t.datetime "completed_at"
   end
 
 end
