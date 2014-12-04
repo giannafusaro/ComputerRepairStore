@@ -114,3 +114,21 @@ SELECT repairs.* FROM repairs  WHERE repairs.customer_id = 39 AND (requested_for
 # 12.
 # Intersect
 # return customer id of customers who have been served by an employee who hasn't been rated
+
+
+# 13.
+# employee of the month, STORED PROCEDURE
+CREATE PROCEDURE employeeOfTheMonth (OUT employeeOfMonth INT(4))
+BEGIN
+CREATE TEMPORARY TABLE Result (rating INT(4), employee_id INT(4), RepairNumber INT(4));
+INSERT INTO Result
+SELECT employees.rating, repairs.employee_id, count(*) AS NumberOfRepairs FROM
+(repairs INNER JOIN employees
+  ON repairs.employee_id = employees.id)
+  GROUP BY employee_id
+  HAVING max(employees.rating)
+  ORDER BY NumberOfRepairs DESC LIMIT 1;
+  SELECT employee_id from Result into employeeOfMonth;
+  END //
+  DELIMETER ;
+  

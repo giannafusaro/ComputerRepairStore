@@ -67,5 +67,30 @@
     </div>
   </div>
 
-  <h3>Average Turn Around Time: <%= @avg_tat %></h3>
+  <div class="col-md-6">
+    <table class="table table-striped">
+      <tr>
+        <td class="repair-header" colspan="5"> <h3>Employee Stats</h3> </td>
+      </tr>
+
+      <tr>
+        <td>Average Turnaround Time</td>
+        <td><%= Employee.average_turnaround_time %></td>
+      </tr>
+      <tr>
+        <td>Employee Of The Month</td>
+        <td><%= Employee.of_the_month %></td>
+      </tr>
+      <tr>
+        <td>Lowest Rated Employe</td>
+        <td><%= Employee.lowest_rated %></td>
+      </tr>
+
+    </table>
+  </div>
+
+<!--
+  <h3>Average Turn Around Time: <%= Employee.average_turnaround_time %></h3>
+  <h3>Employee Of The Month: <%= Employee.of_the_month %></h3>
+  <h3>Lowest Rated Employee: <%= Employee.lowest_rated %></h3> -->
 </div>

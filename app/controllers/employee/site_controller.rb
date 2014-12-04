@@ -9,10 +9,8 @@ class Employee::SiteController < ApplicationController
   end
 
   def dashboard
-    connection = Repair.connection
-    connection.execute "CALL avg_TurnAroundTime(@average);"
-    result = connection.execute "SELECT @average;"
-    @avg_tat = result.each[0][0].to_f.round(2)
+
+
   end
 
 end
