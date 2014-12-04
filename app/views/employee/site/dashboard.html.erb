@@ -4,7 +4,12 @@
     <div class="col-md-6">
       <table class="table table-striped">
         <tr>
-          <td class="repair-header" colspan="5"> <h3>Unassigned Repairs</h3> </td>
+          <td class="repair-header" colspan="5">
+            <h3>
+              Unassigned Repairs
+              <span class="badge badge-header-count"> <%= Repair.all.unassigned.count%> </span>
+            </h3>
+          </td>
         </tr>
         <tr>
           <th>Customer Name</th>
@@ -61,4 +66,6 @@
       </table>
     </div>
   </div>
+
+  <h3>Average Turn Around Time: <%= @avg_tat %></h3>
 </div>
