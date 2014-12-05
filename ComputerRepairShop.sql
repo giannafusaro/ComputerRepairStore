@@ -132,3 +132,54 @@ SELECT employees.rating, repairs.employee_id, count(*) AS NumberOfRepairs FROM
   END //
   DELIMETER ;
   
+
+
+
+
+
+#######
+# This is an archive table that we'll use to archive the tuples 
+#######
+
+DROP TABLE IF EXISTS archiver;
+CREATE TABLE archiver(
+  id INT(11),
+  customer_id INT(11),
+  employee_id INT(11),
+  computer_id INT(11),
+  description text,
+  labor_cost FLOAT(11),
+  total_cost FLOAT(11),
+  created_at DATETIME,
+  updated_at DATETIME,
+  requested_for DATETIME,
+  completed_at DATETIME,
+  PRIMARY KEY(ID)
+);
+
+##### Need help with syntactical correctness but the logic follows
+
+DROP PROCEDURE IF EXISTS archiveRepairs;
+DELIMITER //
+CREATE PROCEDURE archiveRepairs (IN cutOffDate DATETIME);
+
+BEGIN
+
+START TRANSACTION;
+
+  DECLARE EXIT HANDLER FOR SQLEXCEPTION, SQLWARNING
+  BEGIN
+      ROLLBACK;
+  END
+
+  INSERT INTO archiver
+  SELECT * FROM REPAIRS
+  WHERE updated_at < cutOffDate;
+  DELETE FROM repairs
+  WHERE updated_at < cutOffDate;
+
+COMMIT;
+
+END //
+DELIMITER ;
+
