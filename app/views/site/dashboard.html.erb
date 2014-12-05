@@ -3,7 +3,8 @@
   <div class="row">
     <div class="col-md-4">
       <h3>Request Repair</h3>
-      <%= form_for :repair, url: repairs_path, method: :post do |f|%>
+
+      <%= form_for @repair, url: repairs_path, method: :post do |f|%>
         <div class="form-group">
           <%= f.label :description %>
           <%= f.text_field :description, class: 'form-control' %>
@@ -17,11 +18,13 @@
             </span>
           </div>
         </div>
-        <%= f.hidden_field :offset, class: 'js-offset' %>
         <%= f.submit 'Submit', class: 'btn btn-info' %>
       <% end %>
     </div>
     <div class="col-md-8">
+      <% unless @upcoming.empty? %>
+        <h4>Your next repair is scheduled for <span class="js-timestamp"><%= datetime_format @upcoming.first.requested_for %></span> </h4>
+      <% end %>
       <table class="table table-striped">
         <tr>
           <td class="repair-header" colspan="5"> <h3>Upcoming Repairs</h3> </td>
@@ -38,7 +41,7 @@
           <tr>
             <td><%= repair.customer.name %></td>
             <td><%= repair.description %></td>
-            <td class="js-timestamp"><%= repair.requested_for %></td>
+            <td class="js-timestamp"><%= datetime_format(repair.requested_for) %></td>
             <td><%= repair.status %></td>
             <td class="repair-action">
               <%= link_to repair_path(repair.id), class: "btn btn-default" do %>
@@ -57,7 +60,7 @@
               <tr>
                 <td><%= repair.customer.name %></td>
                 <td><%= repair.description %></td>
-                <td class="js-timestamp"><%= repair.requested_for %></td>
+                <td class="js-timestamp"><%= datetime_format(repair.requested_for) %></td>
                 <td><%= repair.status %></td>
                 <td class="repair-action">
                   <%= link_to repair_path(repair.id), class: "btn btn-default" do %>

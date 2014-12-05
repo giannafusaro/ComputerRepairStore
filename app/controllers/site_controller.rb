@@ -8,7 +8,8 @@ class SiteController < ApplicationController
   end
 
   def dashboard
-
+    @repair = Repair.new
+    @upcoming = current_user.repairs.upcoming
   end
 
 end

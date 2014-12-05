@@ -19,7 +19,7 @@ class RepairsController < ApplicationController
   end
 
   def new
-    @repair = Repair.new
+    @repair = current_user.repairs.new
   end
 
   def edit
