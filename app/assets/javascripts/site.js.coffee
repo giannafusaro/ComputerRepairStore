@@ -6,11 +6,7 @@
 $(document).on 'click', '.js-close', (event) ->
   $('#flash-message').fadeOut('fast')
 
-
 $(document).on 'page:update', (event) ->
-
-  $('.js-offset').val(parseInt(moment().format('Z')))
-
   # Automatically dismiss flash messages after 5 seconds
   setTimeout ->
     $('#flash-message .js-close').click()
@@ -20,18 +16,3 @@ $(document).on 'page:update', (event) ->
   $('#datetimepicker').datetimepicker
     language: 'en',
     pick12HourFormat: true
-
-  # Set any timestamps to the user's local time
-  $('.js-timestamp').each ->
-    formatStr = 'MM/DD/YYYY h:mm A'
-
-    if $(this).is('input')
-      timestamp = $(this).val()
-      if timestamp
-        m = moment(timestamp)
-        $(this).val(m.format(formatStr))
-    else
-      timestamp = $(this).text()
-      if timestamp.match(/\d/i)
-        m = moment(timestamp)
-        $(this).text(m.format(formatStr))

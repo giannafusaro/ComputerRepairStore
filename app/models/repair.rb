@@ -11,13 +11,8 @@ class Repair < ActiveRecord::Base
 
   accepts_nested_attributes_for :computer, allow_destroy: true
 
-  attr_accessor :offset
-
-  def requested_for=(str)
-    if str.present?
-      self[:requested_for] = DateTime.strptime(str, '%m/%d/%Y %I:%M %p') + -(offset.to_i.hours)
-    end
-  end
+  validates :description, presence: true
+  validates :requested_for, presence: true
 
   def status
     case
@@ -27,5 +22,10 @@ class Repair < ActiveRecord::Base
     end
   end
 
+  def requested_for=(str)
+    if str.present?
+      self[:requested_for] = DateTime.strptime(str, '%m/%d/%Y %l:%M %p').change(offset: "-0800")
+    end
+  end
 
 end

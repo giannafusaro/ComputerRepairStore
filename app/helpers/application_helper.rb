@@ -8,4 +8,9 @@ module ApplicationHelper
     when :alert then "alert alert-error bg-warning"
     end
   end
+
+  def datetime_format(datetime)
+    # return datetime
+    datetime.strftime('%m/%d/%Y %l:%M %p') unless datetime.nil?
+  end
 end
