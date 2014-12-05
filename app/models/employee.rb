@@ -15,7 +15,7 @@ class Employee < ActiveRecord::Base
   def self.of_the_month
     self.connection.execute "CALL employeeOfTheMonth(@employeeOfTheMonth);"
     result = self.connection.execute "SELECT @employeeOfTheMonth;"
-    result.each[0][0]
+    self.find result.each[0][0]
   end
 
   def self.lowest_rated
