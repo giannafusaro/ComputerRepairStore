@@ -79,18 +79,21 @@
       </tr>
       <tr>
         <td>Employee Of The Month</td>
-        <td><%= Employee.of_the_month %></td>
+        <td><%= Employee.find_by_id(Employee.of_the_month).name %></td>
       </tr>
       <tr>
-        <td>Lowest Rated Employe</td>
-        <td><%= Employee.lowest_rated %></td>
+        <td>Lowest Rated Employee</td>
+        <td><%= Employee.find_by_id(Employee.lowest_rated).name %></td>
+      </tr>
+      <tr>
+        <td>New Employees</td>
+        <td><%= Employee.find_by_id(Employee.n00b).name %></td>
+      </tr>
+      <tr>
+        <td>Experienced Employees</td>
+        <td><%= Employee.old_hats %></td>
       </tr>
 
     </table>
   </div>
-
-<!--
-  <h3>Average Turn Around Time: <%= Employee.average_turnaround_time %></h3>
-  <h3>Employee Of The Month: <%= Employee.of_the_month %></h3>
-  <h3>Lowest Rated Employee: <%= Employee.lowest_rated %></h3> -->
 </div>

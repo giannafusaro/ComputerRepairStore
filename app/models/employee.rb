@@ -24,5 +24,15 @@ class Employee < ActiveRecord::Base
     result.each[0][0]
   end
 
+  def self.n00b
+    result = self.connection.execute "SELECT employees.id FROM employees WHERE employees.id NOT IN (SELECT employees.id FROM employees JOIN repairs ON employees.id = repairs.employee_id);"
+    result.each[0][0]
+  end
+
+  def self.old_hats
+    result = self.connection.execute "SELECT e.name, COUNT(r.employee_id) FROM repairs AS r INNER JOIN employees AS e ON r.employee_id = e.id GROUP BY e.name HAVING COUNT(r.employee_id) > 1;"
+    result.each[0][0]
+  end
+
 
 end

@@ -1,18 +1,13 @@
 class LowestRatedEmployeeProcedure < ActiveRecord::Migration
   def up
     execute <<-SQL
-      CREATE PROCEDURE lowestRatedEmployee
-      (OUT employeeOfMonth INT(4))
+      CREATE PROCEDURE lowestRatedEmployee (OUT lowestRated INT(4))
       BEGIN
-        DROP TEMPORARY TABLE IF EXISTS Result;
-        CREATE TEMPORARY TABLE Result (rating INT(4), employee_id INT(4), RepairNumber INT(4));
-        INSERT INTO Result
-          SELECT employees.rating, repairs.employee_id, count(*) AS NumberOfRepairs
-          FROM (repairs INNER JOIN employees ON repairs.employee_id = employees.id)
-          GROUP BY employee_id
-          HAVING max(employees.rating)
-          ORDER BY NumberOfRepairs DESC LIMIT 1;
-        SELECT employee_id from Result into employeeOfMonth;
+        DECLARE newLowest INT DEFAULT 0;
+        SELECT id INTO newLowest
+        FROM employees
+        WHERE rating IN (SELECT MIN(rating) FROM employees);
+        SET lowestRated = newLowest;
       END
     SQL
   end
