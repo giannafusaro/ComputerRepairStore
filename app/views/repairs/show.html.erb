@@ -16,9 +16,9 @@
         <td class="js-timestamp"><%= @repair.requested_for %></td>
         <td><%= @repair.status %></td>
         <td class="repair-action">
-            <%= link_to repair_path(@repair.id), method: :delete, 'data-confirm'=>'Are you sure?', class: "btn btn-default" do %>
-              <span class="glyphicon glyphicon-trash"></span> Delete
-            <% end %>
+          <%= link_to edit_repair_path(@repair.id), class: "btn btn-default" do %>
+            <span class="glyphicon glyphicon-edit"></span> Edit
+          <% end %>
         </td>
       </tr>
   </table>

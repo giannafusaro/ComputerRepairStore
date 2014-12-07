@@ -21,6 +21,7 @@
         <%= f.submit 'Submit', class: 'btn btn-info' %>
       <% end %>
     </div>
+
     <div class="col-md-8">
       <% unless @upcoming.empty? %>
         <h4>Your next repair is scheduled for <span class="js-timestamp"><%= datetime_format @upcoming.first.requested_for %></span> </h4>
@@ -47,8 +48,8 @@
               <%= link_to repair_path(repair.id), class: "btn btn-default" do %>
                 <span class="glyphicon glyphicon-eye-open"></span> View
               <% end %>
-              <%= link_to repair_path(repair.id), method: :delete, 'data-confirm'=>'Are you sure?', class: "btn btn-default" do %>
-                <span class="glyphicon glyphicon-trash"></span> Delete
+              <%= link_to edit_repair_path(repair.id), class: "btn btn-default" do %>
+                <span class="glyphicon glyphicon-edit"></span> Edit
               <% end %>
             </td>
           </tr>
@@ -66,8 +67,8 @@
                   <%= link_to repair_path(repair.id), class: "btn btn-default" do %>
                     <span class="glyphicon glyphicon-eye-open"></span> View
                   <% end %>
-                  <%= link_to repair_path(repair.id), method: :delete, 'data-confirm'=>'Are you sure?', class: "btn btn-default" do %>
-                    <span class="glyphicon glyphicon-trash"></span> Delete
+                  <%= link_to edit_repair_path(repair.id), class: "btn btn-default" do %>
+                    <span class="glyphicon glyphicon-edit"></span> Edit
                   <% end %>
                 </td>
               </tr>

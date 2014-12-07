@@ -9,7 +9,6 @@ class RepairsController < ApplicationController
     @repair = current_user.repairs.new repair_params
     # @repair.requested_for = @repair.requested_for + params[:offset].to_i.hours
 
-
     if @repair.save
       flash[:notice] = "Repair appointment created successfully!"
       redirect_to :site
