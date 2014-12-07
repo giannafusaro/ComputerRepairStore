@@ -22,7 +22,7 @@
           <tr>
             <td><%= repair.customer.name %></td>
             <td><%= repair.description %></td>
-            <td class="js-timestamp"><%= repair.requested_for %></td>
+            <td class="js-timestamp"><%= datetime_format repair.requested_for %></td>
             <td><%= repair.status %></td>
             <td class="repair-action">
               <%= link_to employee_take_ownership_path(repair.id), class: "btn btn-default" do %>
@@ -51,7 +51,7 @@
           <tr>
             <td><%= repair.customer.name %></td>
             <td><%= repair.description %></td>
-            <td class="js-timestamp"><%= repair.requested_for %></td>
+            <td class="js-timestamp"><%= datetime_format repair.requested_for %></td>
             <td><%= repair.status %></td>
             <td class="repair-action">
               <%= link_to employee_repair_path(repair.id), class: "btn btn-default" do %>
