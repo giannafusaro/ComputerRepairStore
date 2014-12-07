@@ -25,7 +25,9 @@ Rails.application.routes.draw do
 
     get '/take_ownership/:id' => 'employees#take_ownership', as: :take_ownership
 
-    resources :repairs
+    resources :repairs do
+      resources :parts
+    end
 
     get '/dashboard' => 'site#dashboard', as: :dashboard
 

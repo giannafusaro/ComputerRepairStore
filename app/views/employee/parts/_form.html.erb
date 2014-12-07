@@ -1,0 +1,25 @@
+
+<div class="form-group">
+  <%= f.label :model %>
+  <%= f.text_field :model, class: 'form-control' %>
+</div>
+
+<div class="form-group">
+  <%= f.label :serial %>
+  <%= f.text_field :serial, class: 'form-control' %>
+</div>
+
+<div class="form-group">
+  <%= f.label :cost %>
+  <div class="input-group">
+    <span class="input-group-addon">$</span>
+    <%= f.number_field :cost, class: 'form-control' %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= f.label :quantity %>
+  <%= f.number_field :quantity, class: 'form-control' %>
+</div>
+
+<%= hidden_field_tag :repair_id, @repair.id %>

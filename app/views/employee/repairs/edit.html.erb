@@ -4,7 +4,7 @@
     <div class="row">
 
       <div class="col-md-6">
-        <h2>Repair Details</h2>
+        <h2><span class="glyphicon glyphicon-wrench"></span> Repair Details</h2>
         <div class="form-group">
           <%= f.label :customer_name %>
           <br/>
@@ -20,28 +20,18 @@
         <div class="form-group">
           <%= f.label :requested_for %>
           <br/>
-          <span class="unmutable-attribute js-timestamp"><%= @repair.requested_for %></span>
+          <span class="unmutable-attribute js-timestamp"><%= datetime_format @repair.requested_for %></span>
         </div>
 
         <div class="form-group">
           <%= f.label :description %>
-          <%= f.text_field :description, class: 'form-control' %>
-        </div>
-
-        <div class="form-group">
-          <%= f.label :labor_cost %>
-          <%= f.number_field :labor_cost, class: 'form-control' %>
-        </div>
-
-        <div class="form-group">
-          <%= f.label :total_cost %>
-          <%= f.number_field :total_cost, class: 'form-control' %>
+          <%= f.text_area :description, class: 'form-control' %>
         </div>
       </div>
 
       <div class="col-md-6">
         <div class="form-group">
-          <h2>Computer Specs</h2>
+          <h2><span class="glyphicon glyphicon-hdd"></span> Computer Specs</h2>
           <% computer = @repair.computer || Computer.new %>
           <%= f.fields_for :computer, computer do |c| %>
             <div class="form-group">
@@ -56,22 +46,87 @@
               <%= c.label :serial %>
               <%= c.text_field :serial, class: 'form-control' %>
             </div>
-            <div class="checkbox">
-              <%= c.label :warranty do %>
-                <%= c.check_box :warranty %> <strong>has warranty</strong>
-              <% end %>
-            </div>
             <div class="form-group">
               <%= c.label :purchased_at %>
               <div id="datetimepicker" class="input-group input-append date">
-                <%= c.text_field :purchased_at, class: 'form-control js-timestamp' %>
+                <%= c.text_field :purchased_at, value: datetime_format(computer.purchased_at), class: 'form-control js-timestamp' %>
                 <span class="input-group-addon add-on">
                   <i class="glyphicon glyphicon-calendar"></i>
                 </span>
               </div>
             </div>
-            <%= c.hidden_field :offset, class: 'js-offset' %>
+            <div class="checkbox">
+              <%= c.label :warranty do %>
+              <%= c.check_box :warranty %> <strong>has warranty</strong>
+              <% end %>
+            </div>
           <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <h2><span class="glyphicon glyphicon-tags"></span> Parts</h2>
+        <%= link_to new_employee_repair_part_path(repair_id: @repair.id), class: "btn btn-default" do %>
+          <span class="glyphicon glyphicon-plus"></span> Add Part
+        <% end %>
+        <br />&nbsp;<br />
+        <table class="table table-striped">
+          <tr>
+            <th>Model</th>
+            <th>Serial</th>
+            <th>Cost</th>
+            <th>Quantity</th>
+            <th class="text-right">Actions</th>
+          </tr>
+
+          <% @repair.parts.each do |part| %>
+            <tr>
+              <td><%= part.model %></td>
+              <td><%= part.serial %></td>
+              <td><%= number_to_currency part.cost %></td>
+              <td><%= part.quantity %></td>
+              <td class="repair-action text-right">
+                <%= link_to edit_employee_repair_part_path(repair_id: @repair.id, id: part.id), class: "btn btn-default" do %>
+                  <span class="glyphicon glyphicon-pencil"></span> Edit
+                <% end %>
+                <%= link_to employee_repair_part_path(repair_id: @repair.id, id: part.id), method: :delete, 'data-confirm'=>'Are you sure?', class: "btn btn-danger" do %>
+                  <span class="glyphicon glyphicon-trash"></span> Delete
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+
+          <tr>
+            <th></th>
+            <th></th>
+            <th id="total-parts-cost"><%= number_to_currency @repair.parts.collect{|x|x.cost.to_f*x.quantity}.sum %></th>
+            <th><%= @repair.parts.collect{|x|x.quantity}.sum %></th>
+            <th></th>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <h2><span class="glyphicon glyphicon-tasks"></span> Costs</h2>
+
+        <div class="form-group">
+          <%= f.label :labor_cost %>
+          <div class="input-group">
+            <span class="input-group-addon">$</span>
+            <%= f.number_field :labor_cost, class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :total_cost %>
+          <div class="input-group">
+            <span class="input-group-addon">$</span>
+            <%= f.number_field :total_cost, class: 'form-control' %>
+          </div>
         </div>
       </div>
     </div>
@@ -79,3 +134,4 @@
     <%= f.submit 'Save Changes', class: 'btn btn-info' %>
   <% end %>
 </div>
+<br />

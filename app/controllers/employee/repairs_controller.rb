@@ -11,7 +11,7 @@ class Employee::RepairsController < ApplicationController
 
     if @repair.save
       flash[:notice] = "Repair appointment created successfully!"
-      redirect_to employee_dashboard_path
+      redirect_to edit_employee_repair_path(@repair)
     else
       render :new
     end
@@ -33,7 +33,7 @@ class Employee::RepairsController < ApplicationController
     @repair = Repair.find params[:id]
     if @repair.update_attributes(repair_params)
       flash[:notice] = "Repair appointment updated successfully!"
-      redirect_to employee_dashboard_path
+      redirect_to edit_employee_repair_path(@repair)
     else
       render :edit
     end

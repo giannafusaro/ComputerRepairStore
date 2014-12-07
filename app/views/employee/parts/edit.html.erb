@@ -1,0 +1,16 @@
+<div class="container content-container">
+  <h1>Edit Part</h1>
+
+  <%= form_for [:employee, @repair, @part] do |f| %>
+    <%= (render '/layouts/errors', klass: @part) if @part %>
+    <%= render partial: 'form', locals: { f: f } %>
+
+    <%= f.submit 'Update Part', class: 'btn btn-primary' %>
+  <% end %>
+
+  <br />
+
+  <%= link_to employee_repair_part_path(repair_id: @repair.id, id: @part.id), method: :delete, 'data-confirm'=>'Are you sure?', class: "btn btn-danger" do %>
+    <span class="glyphicon glyphicon-trash"></span> Delete
+  <% end %>
+</div>

@@ -1,0 +1,10 @@
+<div class="container content-container">
+  <h1>New Part</h1>
+
+  <%= form_for [:employee, @repair, @part] do |f| %>
+    <%= (render '/layouts/errors', klass: @part) if @part %>
+    <%= render partial: 'form', locals: { f: f } %>
+
+    <%= f.submit 'Create Part', class: 'btn btn-primary' %>
+  <% end %>
+</div>
