@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141204223252) do
+ActiveRecord::Schema.define(version: 20141207012856) do
 
   create_table "computers", force: true do |t|
     t.integer  "customer_id"
@@ -53,6 +53,8 @@ ActiveRecord::Schema.define(version: 20141204223252) do
     t.datetime "updated_at"
   end
 
+  add_index "parts", ["repair_id"], name: "repair_id", using: :btree
+
   create_table "repairs", force: true do |t|
     t.integer  "customer_id"
     t.integer  "employee_id"
@@ -65,5 +67,9 @@ ActiveRecord::Schema.define(version: 20141204223252) do
     t.datetime "requested_for"
     t.datetime "completed_at"
   end
+
+  add_index "repairs", ["computer_id"], name: "computer_id", using: :btree
+  add_index "repairs", ["customer_id"], name: "customer_id", using: :btree
+  add_index "repairs", ["employee_id"], name: "employee_id", using: :btree
 
 end
