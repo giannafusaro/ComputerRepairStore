@@ -87,15 +87,15 @@
         </tr>
         <tr>
           <td>Employee Of The Month</td>
-          <td><%= Employee.find_by_id(Employee.of_the_month).name %></td>
+          <td><%= Employee.of_the_month.try(:name) %></td>
         </tr>
         <tr>
           <td>Lowest Rated Employee</td>
-          <td><%= Employee.find_by_id(Employee.lowest_rated).name %></td>
+          <td><%= Employee.find(Employee.lowest_rated).name %></td>
         </tr>
         <tr>
           <td>New Employees</td>
-          <td><%= Employee.find_by_id(Employee.n00b).name %></td>
+          <td><%= Employee.find(Employee.n00b).name %></td>
         </tr>
         <tr>
           <td>Experienced Employees</td>

@@ -19,6 +19,6 @@ class AddTriggerToRepairs < ActiveRecord::Migration
   end
 
   def down
-    execute "DROP TRIGGER update_labor_cost"
+    execute "DROP TRIGGER update_labor_cost;"
   end
 end
