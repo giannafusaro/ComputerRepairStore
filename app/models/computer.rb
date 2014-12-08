@@ -7,4 +7,8 @@ class Computer < ActiveRecord::Base
       self[:purchased_at] = DateTime.strptime(str, '%m/%d/%Y %l:%M %p').change(offset: "-0800")
     end
   end
+
+  def has_warranty?
+    warranty?
+  end
 end

@@ -38,10 +38,15 @@
     <div class="col-md-12">
       <table class="table table-striped">
         <tr>
-          <td class="repair-header" colspan="5"> <h3>My Repairs</h3> </td>
+          <td class="repair-header" colspan="5">
+            <h3>
+              My Repairs
+              <span class="badge badge-header-count"> <%= current_user.repairs.count %> </span>
+            </h3>
+          </td>
         </tr>
         <tr>
-          <th>Name</th>
+          <th>Customer</th>
           <th>Description</th>
           <th>Requested For</th>
           <th>Status</th>

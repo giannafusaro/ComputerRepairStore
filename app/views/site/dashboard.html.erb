@@ -35,7 +35,7 @@
           <th>Description</th>
           <th>Requested For</th>
           <th>Status</th>
-          <th>Action</th>
+          <th class="text-right">Actions</th>
         </tr>
 
         <% current_user.repairs.upcoming.order_by_date.each do |repair| %>
@@ -44,7 +44,7 @@
             <td><%= repair.description %></td>
             <td class="js-timestamp"><%= datetime_format(repair.requested_for) %></td>
             <td><%= repair.status %></td>
-            <td class="repair-action">
+            <td class="repair-action text-right">
               <%= link_to repair_path(repair.id), class: "btn btn-default" do %>
                 <span class="glyphicon glyphicon-eye-open"></span> View
               <% end %>
@@ -63,7 +63,7 @@
                 <td><%= repair.description %></td>
                 <td class="js-timestamp"><%= datetime_format(repair.requested_for) %></td>
                 <td><%= repair.status %></td>
-                <td class="repair-action">
+                <td class="repair-action text-right">
                   <%= link_to repair_path(repair.id), class: "btn btn-default" do %>
                     <span class="glyphicon glyphicon-eye-open"></span> View
                   <% end %>

@@ -7,15 +7,15 @@
         <th>Description</th>
         <th>Requested For</th>
         <th>Status</th>
-        <th>Action</th>
+        <th class="text-right">Actions</th>
       </tr>
     </thead>
       <tr>
         <td><%= @repair.customer.name %></td>
         <td><%= @repair.description %></td>
-        <td class="js-timestamp"><%= @repair.requested_for %></td>
+        <td class="js-timestamp"><%= datetime_format @repair.requested_for %></td>
         <td><%= @repair.status %></td>
-        <td class="repair-action">
+        <td class="repair-action text-right">
           <%= link_to edit_repair_path(@repair.id), class: "btn btn-default" do %>
             <span class="glyphicon glyphicon-edit"></span> Edit
           <% end %>
