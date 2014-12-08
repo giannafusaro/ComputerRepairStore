@@ -117,7 +117,7 @@
           <%= f.label :labor_cost %>
           <div class="input-group">
             <span class="input-group-addon">$</span>
-            <%= f.number_field :labor_cost, class: 'form-control' %>
+            <%= f.number_field :labor_cost, class: 'form-control', max: "9999", step: "0.01", size: "4" %>
           </div>
         </div>
 
@@ -125,7 +125,7 @@
           <%= f.label :total_cost %>
           <div class="input-group">
             <span class="input-group-addon">$</span>
-            <%= f.number_field :total_cost, class: 'form-control' %>
+            <%= f.number_field :total_cost, class: 'form-control', max: "9999", step: "0.01", size: "4", disabled: true %>
           </div>
         </div>
       </div>
