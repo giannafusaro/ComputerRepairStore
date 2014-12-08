@@ -6,7 +6,7 @@
 $(document).on 'click', '.js-close', (event) ->
   $('#flash-message').fadeOut('fast')
 
-$(document).on 'page:update', (event) ->
+$(document).on 'ready', (event) ->
   # Automatically dismiss flash messages after 5 seconds
   setTimeout ->
     $('#flash-message .js-close').click()
