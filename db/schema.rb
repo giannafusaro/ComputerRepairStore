@@ -13,7 +13,17 @@
 
 ActiveRecord::Schema.define(version: 20141208022752) do
 
-  create_table "archiver", force: true do |t|
+  create_table "archive_parts", force: true do |t|
+    t.integer  "repair_id"
+    t.string   "model"
+    t.string   "serial"
+    t.decimal  "cost",       precision: 8, scale: 2
+    t.integer  "quantity"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "archive_repairs", force: true do |t|
     t.integer  "customer_id"
     t.integer  "employee_id"
     t.integer  "computer_id"
