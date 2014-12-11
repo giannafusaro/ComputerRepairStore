@@ -35,4 +35,10 @@ class Repair < ActiveRecord::Base
     end
   end
 
+  def self.perform_archive
+    archive_date = 90.days.ago.strftime('%Y-%m-%d 23:59:59')
+    self.connection.execute "CALL archiveRepairs('#{archive_date}');"
+    true
+  end
+
 end

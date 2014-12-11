@@ -45,6 +45,12 @@ class Employee::RepairsController < ApplicationController
     redirect_to :site
   end
 
+  def perform_archive
+    Repair.perform_archive
+    flash[:notice] = "Archived!"
+    redirect_to employee_dashboard_path
+  end
+
   private
 
     def repair_params

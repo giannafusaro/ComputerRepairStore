@@ -28,7 +28,8 @@ Rails.application.routes.draw do
     resources :repairs do
       resources :parts
     end
-
+    get '/perform-archive' => 'repairs#perform_archive', as: :archive
+    
     get '/dashboard' => 'site#dashboard', as: :dashboard
 
   end
