@@ -130,8 +130,10 @@
         </div>
       </div>
     </div>
-
+    <div id="datetimepicker" class="input-group input-append date">
+      <%= f.label :completed_at, value: datetime_format(@repair.completed_at), class: 'form-control js-timestamp' %>
     <%= f.submit 'Save Changes', class: 'btn btn-info' %>
+	
   <% end %>
 </div>
 <br />
