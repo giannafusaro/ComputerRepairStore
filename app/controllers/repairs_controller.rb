@@ -46,7 +46,7 @@ class RepairsController < ApplicationController
   end
 
   private
-  
+
     def repair_params
       params.require(:repair).permit(:customer_id, :employee_id, :computer_id, :description, :labor_cost, :total_cost, :offset, :requested_for, :completed_at)
     end

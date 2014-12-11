@@ -48,7 +48,7 @@
             </div>
             <div class="form-group">
               <%= c.label :purchased_at %>
-              <div id="datetimepicker" class="input-group input-append date">
+              <div id="datetimepicker" class="input-group input-append date datetimepicker">
                 <%= c.text_field :purchased_at, value: datetime_format(computer.purchased_at), class: 'form-control js-timestamp' %>
                 <span class="input-group-addon add-on">
                   <i class="glyphicon glyphicon-calendar"></i>
@@ -130,10 +130,18 @@
         </div>
       </div>
     </div>
-    <div id="datetimepicker" class="input-group input-append date">
-      <%= f.label :completed_at, value: datetime_format(@repair.completed_at), class: 'form-control js-timestamp' %>
+    <div class="form-group">
+      <%= f.label :completed_at %>
+      <div id="datetimepicker" class="input-group input-append date datetimepicker">
+        <%= f.text_field :completed_at, value: datetime_format(@repair.completed_at), class: 'form-control js-timestamp' %>
+        <span class="input-group-addon add-on">
+          <i class="glyphicon glyphicon-calendar"></i>
+        </span>
+      </div>
+    </div>
+
     <%= f.submit 'Save Changes', class: 'btn btn-info' %>
-	
+
   <% end %>
 </div>
 <br />

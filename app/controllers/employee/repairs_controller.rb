@@ -49,6 +49,6 @@ class Employee::RepairsController < ApplicationController
 
     def repair_params
       params.require(:repair).permit(:customer_id, :employee_id, :computer_id, :description, :labor_cost,
-        :total_cost, :offset, :requested_for, computer_attributes: [ :type, :model, :serial, :warranty, :purchased_at, :offset ])
+        :total_cost, :offset, :requested_for, :completed_at, computer_attributes: [ :type, :model, :serial, :warranty, :purchased_at, :offset ])
     end
 end

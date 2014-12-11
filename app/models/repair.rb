@@ -22,6 +22,13 @@ class Repair < ActiveRecord::Base
     end
   end
 
+  def completed_at=(str)
+    if str.present?
+      self[:completed_at] = DateTime.strptime(str, '%m/%d/%Y %l:%M %p').change(offset: "-0800")
+    end
+  end
+
+
   def requested_for=(str)
     if str.present?
       self[:requested_for] = DateTime.strptime(str, '%m/%d/%Y %l:%M %p').change(offset: "-0800")
