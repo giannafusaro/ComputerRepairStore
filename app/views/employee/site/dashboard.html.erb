@@ -99,7 +99,9 @@
         </tr>
         <tr>
           <td>Experienced Employees</td>
-          <td><%= Employee.old_hats %></td>
+          <% Employee.old_hats.each do |employee| %>
+            <td><%= employee[0] %></td>
+          <% end %>
         </tr>
       </table>
     </div>

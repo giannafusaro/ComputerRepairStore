@@ -112,7 +112,7 @@ SELECT repairs.* FROM repairs  WHERE repairs.employee_id = 40  ORDER BY requeste
 SELECT repairs.* FROM repairs  WHERE repairs.customer_id = 39 AND (requested_for < '2014-11-22 00:00:24')  ORDER BY requested_for desc
 
 # 12.
-# Intersect
+# Cascade Delete
 # return customer id of customers who have been served by an employee who hasn't been rated
 
 
@@ -132,11 +132,22 @@ SELECT employees.rating, repairs.employee_id, count(*) AS NumberOfRepairs FROM
   END //
   DELIMETER ;
 
+# 14.
+# Trigger to update cost
+CREATE TRIGGER update_cost AFTER UPDATE ON parts
+FOR EACH ROW
+BEGIN
+DECLARE existing_total INT(11) DEFAULT 0;
+
+SELECT repairs.total_cost INTO existing_total FROM repairs
+WHERE repairs.id = OLD.repair_id;
+
+UPDATE repairs SET repairs.total_cost=(NEW.cost*NEW.quantity)
+WHERE repairs.id = NEW.repair_id;
+END
 
 
-
-
-
+# 15.
 #######
 # This is an archive table that we'll use to archive the tuples
 #######

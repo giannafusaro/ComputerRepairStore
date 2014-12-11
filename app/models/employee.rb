@@ -34,10 +34,10 @@ class Employee < ActiveRecord::Base
 
   def self.old_hats
     result = self.connection.execute "SELECT e.name, COUNT(r.employee_id) FROM repairs AS r INNER JOIN employees AS e ON r.employee_id = e.id GROUP BY e.name HAVING COUNT(r.employee_id) > 1;"
-    emp_id = result.each[0][0] if result && result.each && result.each[0]
-    unless emp_id.nil? || emp_id==0
-      self.find emp_id
-    end
+    # emp_id = result.each[0][0] if result && result.each && result.each[0]
+    # unless emp_id.nil? || emp_id==0
+    #   self.find emp_id
+    # end
   end
 
 
