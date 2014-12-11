@@ -7,11 +7,9 @@ class AddForeignKeyContraintsToModels < ActiveRecord::Migration
   end
 
   def down
-    # execute <<-SQL
-    #   ALTER TABLE repairs DROP FOREIGN KEY customer_id;
-    #   ALTER TABLE repairs DROP FOREIGN KEY employee_id;
-    #   ALTER TABLE repairs DROP FOREIGN KEY computer_id;
-    #   ALTER TABLE parts DROP FOREIGN KEY repair_id;
-    # SQL
+    # execute "ALTER TABLE repairs DROP FOREIGN KEY customer_id;"
+    # execute "ALTER TABLE repairs DROP FOREIGN KEY employee_id;"
+    # execute "ALTER TABLE repairs DROP FOREIGN KEY computer_id;"
+    # execute "ALTER TABLE parts DROP FOREIGN KEY repair_id;"
   end
 end
