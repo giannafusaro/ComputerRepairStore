@@ -22,9 +22,7 @@ class Employee < ActiveRecord::Base
   end
 
   def self.lowest_rated
-    self.connection.execute "CALL lowestRatedEmployee(@lowestRatedEmployee);"
-    result = self.connection.execute "SELECT @lowestRatedEmployee;"
-    result.each[0][0]
+    where('rating IS NOT NULL').order(rating: :asc).first
   end
 
   def self.n00b
