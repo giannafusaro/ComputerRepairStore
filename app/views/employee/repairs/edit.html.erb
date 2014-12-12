@@ -34,6 +34,9 @@
           <h2><span class="glyphicon glyphicon-hdd"></span> Computer Specs</h2>
           <% computer = @repair.computer || Computer.new %>
           <%= f.fields_for :computer, computer do |c| %>
+            <% if computer.persisted? %>
+              <%= c.hidden_field :id, value: computer.id %>
+            <% end %>
             <div class="form-group">
               <%= c.label :type %>
               <%= c.select :type, %w(Desktop Laptop), {}, class: 'form-control' %>

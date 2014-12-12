@@ -32,7 +32,7 @@ class RepairsController < ApplicationController
   def update
     @repair = Repair.find params[:id]
     if @repair.update_attributes(repair_params)
-      flash[:success] = "Repair appointment updated successfully!"
+      flash[:notice] = "Repair appointment updated successfully!"
       redirect_to :site
     else
       render :edit
@@ -41,7 +41,18 @@ class RepairsController < ApplicationController
 
   def destroy
     @repair = Repair.find(params[:id]).destroy
-    flash[:success] = "Repair appointment destroyed successfully."
+    flash[:notice] = "Repair appointment destroyed successfully."
+    redirect_to :site
+  end
+
+  def rate
+    @repair = Repair.find(params[:id])
+    @repair.rating = params[:rating]
+    if @repair.save
+      flash[:notice] = "Rating for repair saved succesfully!"
+    else
+      flash[:notice] = "Something went wrong, try rating again."
+    end
     redirect_to :site
   end
 
