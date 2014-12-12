@@ -4,11 +4,20 @@ class AddTurnAroundTimeProcedure < ActiveRecord::Migration
       CREATE PROCEDURE avg_TurnAroundTime
       (OUT average FLOAT(4))
       BEGIN
-        DECLARE total_count INT DEFAULT 0;
-        DECLARE sum INT DEFAULT 0;
-        SELECT count(*) INTO total_count FROM repairs;
-        SELECT SUM(DATEDIFF(completed_at, created_at)) INTO sum FROM repairs;
-        SET average = sum / total_count;
+        DECLARE sum FLOAT(4) DEFAULT 0;
+        DECLARE total_count FLOAT(4) DEFAULT 0;
+
+        CREATE TEMPORARY TABLE IF NOT EXISTS differences (
+          delta FLOAT(4) NOT NULL
+        );
+
+        INSERT INTO differences (delta)
+        SELECT DATEDIFF(completed_at, requested_for)
+        FROM repairs
+        WHERE completed_at AND requested_for IS NOT NULL;
+
+        SELECT avg(delta) INTO average
+        FROM differences;
       END
     SQL
   end
