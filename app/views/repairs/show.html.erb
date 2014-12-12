@@ -15,7 +15,7 @@
         <td><%= @repair.customer.name %></td>
         <td><%= @repair.description %></td>
         <td class="js-timestamp"><%= datetime_format @repair.requested_for %></td>
-        <td><%= @repair.employee.name %></td>
+        <td><%= @repair.employee.name if @repair.employee %></td>
         <td><%= @repair.status %></td>
         <td class="repair-action text-right">
           <%= link_to edit_repair_path(@repair.id), class: "btn btn-default" do %>
