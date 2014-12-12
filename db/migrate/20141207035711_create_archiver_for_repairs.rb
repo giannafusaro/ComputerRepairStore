@@ -14,6 +14,7 @@ class CreateArchiverForRepairs < ActiveRecord::Migration
         updated_at DATETIME,
         requested_for DATETIME,
         completed_at DATETIME,
+        rating INT(1),
         PRIMARY KEY(ID)
       );
     SQL
