@@ -41,7 +41,8 @@ repair5 = Repair.create({ customer: paulie, employee: vito, computer: comp3, des
 repair6 = Repair.create({ customer: test2, employee: test1, computer: comp6, description: "This is past repair example 1.", labor_cost: 75, requested_for: 55.days.ago.strftime('%m/%d/%Y %l:%M %p'),  completed_at: 3.weeks.ago.strftime('%m/%d/%Y %l:%M %p')})
 repair7 = Repair.create({ customer: test2, employee: test1, computer: comp6, description: "This is past repair example 2.", labor_cost: 400, requested_for: 55.days.ago.strftime('%m/%d/%Y %l:%M %p'),  completed_at: 3.weeks.ago.strftime('%m/%d/%Y %l:%M %p')})
 repair8 = Repair.create({ customer: test2, employee: test1, computer: comp6, description: "This is past repair example 3.", labor_cost: 50, requested_for: 55.days.ago.strftime('%m/%d/%Y %l:%M %p'),  completed_at: 3.weeks.ago.strftime('%m/%d/%Y %l:%M %p')})
-
+repair8.updated_at = 95.days.ago
+repair8.save
 
 keyboard = Part.create({repair: repair2, model: 'Logitech', serial: 87493927364937, cost: 44.99, quantity: 2})
 hard_drive = Part.create({repair: repair2, model: 'Rugged', serial: 76438593820217, cost: 300.00, quantity: 1})
