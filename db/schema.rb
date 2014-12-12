@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20141212080115) do
     t.datetime "updated_at"
     t.datetime "requested_for"
     t.datetime "completed_at"
+    t.integer  "rating"
   end
 
   create_table "computers", force: true do |t|
