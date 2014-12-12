@@ -99,9 +99,11 @@
         </tr>
         <tr>
           <td>Experienced Employees</td>
-          <% Employee.old_hats.each do |employee| %>
-            <td><%= employee[0] %></td>
-          <% end %>
+          <td>
+            <% Employee.old_hats.each do |employee| %>
+              <%= employee[0] %> <br/>
+            <% end %>
+          </td>
         </tr>
       </table>
     </div>

@@ -14,9 +14,9 @@ class EmployeeOfTheMonthProcedure < ActiveRecord::Migration
           SELECT e.id, e.rating, COUNT(r.employee_id) FROM employees e
           JOIN repairs r ON e.id = r.employee_id
             WHERE
-            r.created_at >= DATE_FORMAT( CURRENT_DATE - INTERVAL 1 MONTH, '%Y-%m-%d 00:00:00' )
+            r.requested_for >= DATE_FORMAT( CURRENT_DATE - INTERVAL 1 MONTH, '%Y-%m-%d 00:00:00' )
             AND
-            r.created_at < DATE_FORMAT( CURRENT_DATE, '%Y-%m-%d 23:59:59' )
+            r.requested_for < DATE_FORMAT( CURRENT_DATE, '%Y-%m-%d 23:59:59' )
           GROUP BY e.id;
 
         INSERT INTO t2
