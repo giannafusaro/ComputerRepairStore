@@ -30,12 +30,18 @@ comp2 = Desktop.create({ customer: tony, model: 'Mac Pro', serial: '8483663832',
 comp3 = Laptop.create({ customer: paulie, model: 'Asus Netbook', serial: '124123699044', purchased_at: 6.months.ago.strftime('%m/%d/%Y %l:%M %p') })
 comp4 = Desktop.create({ customer: silvio, model: 'Dell Inspiron', serial: '124123699044', purchased_at: 3.days.ago.strftime('%m/%d/%Y %l:%M %p') })
 comp5 = Laptop.create({ customer: christopher, model: 'Macbook ', serial: '124123699044', purchased_at: 1.years.ago.strftime('%m/%d/%Y %l:%M %p') })
+comp6 = Laptop.create({ customer: test2, model: 'Macbook Air ', serial: '789738294732', purchased_at: 1.years.ago.strftime('%m/%d/%Y %l:%M %p') })
 
 repair1 = Repair.create({ customer: tony, employee: carmela, computer: comp1, description: "It doesn't turn on, okay?", labor_cost: 0, total_cost: 0, requested_for: Time.now.strftime('%m/%d/%Y %l:%M %p'), completed_at: 2.day.from_now.strftime('%m/%d/%Y %l:%M %p') })
 repair2 = Repair.create({ customer: paulie, employee: carmela, computer: comp3, description: "Windows shattered.", labor_cost: 220, total_cost: 500, requested_for: 4.days.ago.strftime('%m/%d/%Y %l:%M %p'),  completed_at: 2.minutes.from_now.strftime('%m/%d/%Y %l:%M %p')})
 repair3 = Repair.create({ customer: silvio, employee: vito, computer: comp4, description: "I don't know. That's your job.", labor_cost: 400, total_cost: 400, requested_for: 10.days.ago.strftime('%m/%d/%Y %l:%M %p'),  completed_at: 5.hours.from_now.strftime('%m/%d/%Y %l:%M %p')})
 repair4 = Repair.create({ customer: christopher, employee: meadow, computer: comp5, description: "You tell Tony and you're dead!", labor_cost: 400, total_cost: 400,requested_for: 3.weeks.ago.strftime('%m/%d/%Y %l:%M %p'),  completed_at: 2.weeks.from_now.strftime('%m/%d/%Y %l:%M %p')})
 repair5 = Repair.create({ customer: paulie, employee: vito, computer: comp3, description: "You didn't fix my windows, doc.", labor_cost: 100, total_cost: 200, requested_for: 55.days.ago.strftime('%m/%d/%Y %l:%M %p'),  completed_at: 3.weeks.ago.strftime('%m/%d/%Y %l:%M %p')})
+
+repair6 = Repair.create({ customer: test2, employee: test1, computer: comp6, description: "This is past repair example 1.", labor_cost: 75, requested_for: 55.days.ago.strftime('%m/%d/%Y %l:%M %p'),  completed_at: 3.weeks.ago.strftime('%m/%d/%Y %l:%M %p')})
+repair7 = Repair.create({ customer: test2, employee: test1, computer: comp6, description: "This is past repair example 2.", labor_cost: 400, requested_for: 55.days.ago.strftime('%m/%d/%Y %l:%M %p'),  completed_at: 3.weeks.ago.strftime('%m/%d/%Y %l:%M %p')})
+repair8 = Repair.create({ customer: test2, employee: test1, computer: comp6, description: "This is past repair example 3.", labor_cost: 50, requested_for: 55.days.ago.strftime('%m/%d/%Y %l:%M %p'),  completed_at: 3.weeks.ago.strftime('%m/%d/%Y %l:%M %p')})
+
 
 keyboard = Part.create({repair: repair2, model: 'Logitech', serial: 87493927364937, cost: 44.99, quantity: 2})
 hard_drive = Part.create({repair: repair2, model: 'Rugged', serial: 76438593820217, cost: 300.00, quantity: 1})
