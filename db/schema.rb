@@ -36,19 +36,6 @@ ActiveRecord::Schema.define(version: 20141208022752) do
     t.datetime "completed_at"
   end
 
-  create_table "archiver", force: true do |t|
-    t.integer  "customer_id"
-    t.integer  "employee_id"
-    t.integer  "computer_id"
-    t.text     "description"
-    t.decimal  "labor_cost",    precision: 8, scale: 2
-    t.decimal  "total_cost",    precision: 8, scale: 2
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.datetime "requested_for"
-    t.datetime "completed_at"
-  end
-
   create_table "computers", force: true do |t|
     t.integer  "customer_id"
     t.string   "model"
