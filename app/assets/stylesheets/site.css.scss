@@ -126,3 +126,24 @@ nav.navbar {
     margin-top: 10px;
   }
 }
+
+
+.rating-star {
+  border: none;
+  background-color: inherit;
+  color: rgb(139, 139, 139);
+  width: 15%;
+
+}
+
+.rating-star.filled-in {
+  color: rgb(199, 0, 23);
+  width:15%;
+}
+
+
+
+.rating-star:hover {
+  color: rgb(199, 0, 23);
+  background-color: inherit;
+}

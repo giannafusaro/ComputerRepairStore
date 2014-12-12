@@ -11,7 +11,7 @@
 
   <div class="form-group">
     <%= f.label :requested_for %>
-    <div id="datetimepicker" class="input-group input-append date">
+    <div id="datetimepicker" class="input-group input-append date datetimepicker">
       <%= f.text_field :requested_for, value: datetime_format(@repair.requested_for), class: 'form-control js-timestamp' %>
       <span class="input-group-addon add-on">
         <i class="glyphicon glyphicon-calendar"></i>

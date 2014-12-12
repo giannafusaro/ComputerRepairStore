@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141208022752) do
+ActiveRecord::Schema.define(version: 20141212080115) do
 
   create_table "archive_parts", force: true do |t|
     t.integer  "repair_id"
@@ -83,12 +83,13 @@ ActiveRecord::Schema.define(version: 20141208022752) do
     t.integer  "employee_id"
     t.integer  "computer_id"
     t.text     "description"
-    t.decimal  "labor_cost",    precision: 8, scale: 2
-    t.decimal  "total_cost",    precision: 8, scale: 2
+    t.decimal  "labor_cost",    precision: 8,  scale: 2
+    t.decimal  "total_cost",    precision: 8,  scale: 2
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "requested_for"
     t.datetime "completed_at"
+    t.decimal  "rating",        precision: 10, scale: 0
   end
 
   add_index "repairs", ["computer_id"], name: "computer_id", using: :btree

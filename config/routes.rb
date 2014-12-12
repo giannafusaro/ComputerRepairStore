@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   get  '/dashboard' => 'site#dashboard', as: :dashboard
 
+  get '/rate/:id' => 'repairs#rate', as: :rate
+
   resources :repairs
   resources :customers
 
@@ -29,7 +31,7 @@ Rails.application.routes.draw do
       resources :parts
     end
     get '/perform-archive' => 'repairs#perform_archive', as: :archive
-    
+
     get '/dashboard' => 'site#dashboard', as: :dashboard
 
   end

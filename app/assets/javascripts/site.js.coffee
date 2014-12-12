@@ -12,7 +12,6 @@ $(document).on 'ready', (event) ->
     $('#flash-message .js-close').click()
   , 5000
 
-  console.log("poopydoopy")
   # DateTime Picker
   $('.datetimepicker').datetimepicker
     language: 'en',
