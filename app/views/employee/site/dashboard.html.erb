@@ -108,6 +108,22 @@
       </table>
     </div>
     <div class="col-md-6">
+      <h3>My Rating</h3>
+      <div class="starz">
+        <% num_stars = current_user.rating || 0 %>
+
+        <% (1..num_stars).each do |fill_star| %>
+          <span class="btn btn-default rating-star filled-in">
+            <span class="glyphicon glyphicon-star <%= fill_star %>" />
+          </span>
+        <% end %>
+
+        <% (num_stars+1..5).each do |unrated_star| %>
+          <span class="btn btn-default rating-star">
+            <span class="glyphicon glyphicon-star <%= unrated_star %>" />
+          </span>
+        <% end %>
+      </div>
       <h3>Other</h3>
       <%= link_to 'Archive Repairs', employee_archive_path, class: 'btn btn-danger' %><br />
       <small><i>Archives all repairs and parts older than 90 days</i></small>
